@@ -114,3 +114,94 @@ function gameObject() {
         },
     };
 }
+const game = gameObject()
+//Returns the points scored by a player given the player name
+function numPointsScored(playerName){
+    
+    for (const team in game) {
+        
+
+        if(game[team].players[playerName]){
+            return game[team].players[playerName].points
+        }
+    }
+    return "Player not found"
+}
+
+//console.log(numPointsScored("Brendan Hayword"))
+
+//Returns the shoe size of a player given the player name
+function shoeSize(playerName){
+    
+    for(const team in game){
+
+        if(game[team].players[playerName]){
+            return game[team].players[playerName].shoe
+        }
+    }
+    return "Player not found"
+}
+//console.log(shoeSize("Brendan Hayword"))
+
+//Returns the team colors given a team name
+function teamColors(teamName){
+    for (const team in game){
+        if(game[team].teamName === teamName){
+            return game[team].colors
+        }
+
+    }
+    
+    return "team not found"
+}
+
+//console.log(teamColors("Charlotte Hornets"))
+
+//Returns the team names by first collecting the game object values into an array then using the array.map() function to extract the team names
+function teamNames(){
+        
+    return Object.values(game).map(team => team.teamName)
+    }
+
+
+//console.log(teamNames())
+//Returns the player numbers given a team name
+function playerNumbers(teamName){
+    for (const team in game){
+        if(game[team].teamName === teamName) {
+            return Object.values(game[team].players).map(player => player.number)
+        }    
+    }
+
+return "Team not found"
+
+}   
+
+
+//console.log(playerNumbers("Brooklyn Nets"))
+
+function playerStats(playerName){
+    for (const team in game) {
+        if(game[team].players[playerName]){
+            return game[team].players[playerName]
+        }
+    }
+
+return "Player not found"
+}
+
+//console.log(playerStats("Ben Gordon"))
+
+function bigShoeRebounds(){
+    // The spread operator(...) is used to combine two arrays returned by the Object.values() method for the home and away teams
+    const allPlayers = [...Object.values(game.away.players),...Object.values(game.home.players)]
+    const largestShoePlayer = allPlayers.reduce((prev,curr) => 
+        (prev.shoe > curr.shoe) ? prev : curr
+    )
+    return largestShoePlayer.rebounds
+
+    
+
+}
+
+//console.log(bigShoeRebounds())
