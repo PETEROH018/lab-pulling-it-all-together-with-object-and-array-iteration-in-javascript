@@ -179,7 +179,7 @@ return "Team not found"
 
 
 //console.log(playerNumbers("Brooklyn Nets"))
-
+//Returns a player's stats given the player's name
 function playerStats(playerName){
     for (const team in game) {
         if(game[team].players[playerName]){
@@ -191,7 +191,8 @@ return "Player not found"
 }
 
 //console.log(playerStats("Ben Gordon"))
-
+//This function uses the Object.values() function to return the players stats for both teams as arrays. The arrays are the combined into one array known as allPlayers using the spread operator.
+//The array.reduce() function is then used to find the player with the biggest shoe size by comparing adjacent students in the allPlayers array.
 function bigShoeRebounds(){
     // The spread operator(...) is used to combine two arrays returned by the Object.values() method for the home and away teams
     const allPlayers = [...Object.values(game.away.players),...Object.values(game.home.players)]
